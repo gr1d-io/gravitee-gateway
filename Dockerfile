@@ -1,5 +1,5 @@
 FROM maven:3.6.0-jdk-8-alpine
-MAINTAINER Gr1d Team <http://gr1d.io>
+MAINTAINER Gr1d Team http://gr1d.io
 
 # maven
 RUN apk add --update ca-certificates zip git unzip netcat-openbsd wget maven
