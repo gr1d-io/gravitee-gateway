@@ -63,6 +63,8 @@ RUN cd /tmp/ \
     && cd .. \
     && rm -rf gravitee-policy-debug
 
+RUN rm -rf /tmp/*
+
 # user permisson
 RUN addgroup -g 1000 gravitee \
     && adduser -D -u 1000 -G gravitee -h ${GRAVITEEIO_HOME} gravitee \
