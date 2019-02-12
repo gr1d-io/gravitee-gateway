@@ -1,18 +1,10 @@
-FROM maven:3.6.0-jdk-8-alpine
-MAINTAINER Gr1d Team http://gr1d.io
+FROM graviteeio/gateway:1.22.1
+MAINTAINER Gr1d Team <http://gr1d.io>
+
+USER root
 
 # maven
-RUN apk add --update ca-certificates zip git unzip netcat-openbsd wget maven
-
-# gravitee
-ARG GRAVITEEIO_VERSION=1.22.1
-ENV GRAVITEEIO_HOME /opt/graviteeio-gateway
-RUN mkdir -p /opt/graviteeio-gateway
-
-RUN wget https://download.gravitee.io/graviteeio-apim/distributions/graviteeio-full-${GRAVITEEIO_VERSION}.zip --no-check-certificate -P /tmp/ \
-    && unzip /tmp/graviteeio-full-${GRAVITEEIO_VERSION}.zip -d /tmp/ \
-    && mv /tmp/graviteeio-full-${GRAVITEEIO_VERSION}/graviteeio-gateway-${GRAVITEEIO_VERSION}/* ${GRAVITEEIO_HOME} \
-    && rm -rf /tmp/*
+RUN apk add --update git maven openjdk8
 
 # policies
 RUN cd /tmp/ \
@@ -65,10 +57,11 @@ RUN cd /tmp/ \
 
 RUN rm -rf /tmp/*
 
+RUN apk del git maven openjdk8
+RUN apk cache clean
+
 # user permisson
-RUN addgroup -g 1000 gravitee \
-    && adduser -D -u 1000 -G gravitee -h ${GRAVITEEIO_HOME} gravitee \
-    && chown -R gravitee:gravitee ${GRAVITEEIO_HOME}
+RUN chown -R gravitee:gravitee ${GRAVITEEIO_HOME}
 
 USER 1000
 
