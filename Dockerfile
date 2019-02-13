@@ -58,7 +58,6 @@ RUN cd /tmp/ \
 RUN rm -rf /tmp/*
 
 RUN apk del git maven openjdk8
-RUN apk cache clean
 
 # user permisson
 RUN chown -R gravitee:gravitee ${GRAVITEEIO_HOME}
