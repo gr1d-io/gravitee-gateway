@@ -1,7 +1,9 @@
-# Gravitee-Gateway-Docker
+# Gravitee-Gateway Dockerfile Deis / Hephy
+
+This project aims to create the gravitee gateway wrapper to run on DEIS / HEPHY
 
 # Setup
-If you doesnt have the gateway app already running, you must create it
+If you dont have the gateway app already running, you must create it
 
 ```bash
 deis create gateway
@@ -26,9 +28,9 @@ gravitee_management_type=mongodb \
 gravitee_management_mongodb_dbname=myDatabase \
 gravitee_management_mongodb_host=IP_ADDRESS \
 gravitee_management_mongodb_port=MONGODBPORT \
-gravitee_policy_api-key_header=X-Api-Key \
-gravitee_policy_api-key_param=api-key \
-gravitee_handlers_request_transaction_header=X-Transaction-Id \
+gravitee_policy_apikey_header="X-Api-Key" \
+gravitee_policy_apikey_param="api-key" \
+gravitee_handlers_request_transaction_header="X-Transaction-Id" \
 PORT=8082
 ```
 
