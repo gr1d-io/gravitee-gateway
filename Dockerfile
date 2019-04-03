@@ -1,7 +1,5 @@
-FROM graviteeio/gateway:1.22.1
+FROM graviteeio/gateway:1.23.1
 MAINTAINER Gr1d Team <http://gr1d.io>
-
-USER root
 
 # maven
 RUN apk add --update git maven openjdk8
@@ -59,10 +57,10 @@ RUN rm -rf /tmp/*
 
 RUN apk del git maven openjdk8
 
-# user permisson
-RUN chown -R gravitee:gravitee ${GRAVITEEIO_HOME}
+ENV GRAVITEEIO_HOME /opt/graviteeio-gateway
 
-USER 1000
+# user permisson
+RUN chgrp -R 0 ${GRAVITEEIO_HOME} && chmod -R g=u ${GRAVITEEIO_HOME}
 
 WORKDIR ${GRAVITEEIO_HOME}
 
