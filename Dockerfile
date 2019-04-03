@@ -66,5 +66,4 @@ WORKDIR ${GRAVITEEIO_HOME}
 
 # final touches
 EXPOSE 8082
-VOLUME ["/opt/graviteeio-gateway/logs"]
 CMD ["./bin/gravitee"]
