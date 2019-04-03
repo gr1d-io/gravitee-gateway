@@ -1,4 +1,4 @@
-FROM graviteeio/gateway:1.23.1
+FROM graviteeio/gateway:1.24.0
 MAINTAINER Gr1d Team <http://gr1d.io>
 
 # maven
